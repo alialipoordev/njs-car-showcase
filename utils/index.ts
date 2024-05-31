@@ -1,7 +1,10 @@
-import { CarProps } from "@/types";
+import { CarProps, FilterProps } from "@/types";
 
-export async function fetchCars() {
-  const url = "https://api.api-ninjas.com/v1/cars?model=camry";
+export async function fetchCars(filters: FilterProps) {
+  const { manufacturer, year, model, limit, fuel } = filters;
+
+  const url = `https://api.api-ninjas.com/v1/cars?
+    make=${manufacturer}&year=${year}&model=${model}&limit=${limit}&fuel_type=${fuel}`;
 
   const response = await fetch(url, {
     headers: {
